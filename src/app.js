@@ -2,44 +2,39 @@
 import "bootstrap";
 import "./style.css";
 
-import "./assets/img/rigo-baby.jpg";
-import "./assets/img/4geeks.ico";
+document.addEventListener("DOMContentLoaded", function() {
+  const excuseElement = document.querySelector("#excuse");
+  excuseElement.innerHTML = generateExcuse();
 
-window.onload = function() {
-  //write your code here
-  document.querySelector("#excuse").innerHTML = excusegenerator();
-};
-
-let excusegenerator = () => {
-  let who = ["The dog", "My grandma", "His turtle", "My bird"];
-  let action = ["ate", "peed", "crushed", "broke"];
-  let what = ["my homework", "the keys", "the car"];
-  let when = [
-    "before the class",
-    "right on time",
-    "when I finished",
-    "during my lunch",
-    "while I was praying"
-  ];
-
-  // let quien = Math.floor(Math.random() * who.length);
-  let quien = ObtenerElementoAleatorio(who);
-  let accion = ObtenerElementoAleatorio(action);
-  let que = ObtenerElementoAleatorio(what);
-  let cuando = ObtenerElementoAleatorio(when);
-
-  return (
-    who[quien] + " " + action[accion] + " " + what[que] + " " + when[cuando]
-  );
-};
-
-let refresh = document.getElementById("refresh");
-refresh.addEventListener("click", _ => {
-  location.reload();
+  const refreshButton = document.getElementById("refresh");
+  refreshButton.addEventListener("click", refreshExcuse);
 });
 
-function ObtenerElementoAleatorio(ArrayCalcular) {
-  console.log("ObtenerElementoAleatorio");
+function generateExcuse() {
+  const who = ["The 🐕", "My 👵🏼", "His 🐢", "My 🐦"];
+  const action = ["ate", "peed", "crushed", "broke"];
+  const what = ["my 📓", "the 🔑", "the 🚗"];
+  const when = [
+    "before the class",
+    "right on 🕥",
+    "when I finished",
+    "during my lunch",
+    "while I was 🙏🏼"
+  ];
 
-  return Math.floor(Math.random() * ArrayCalcular.length);
+  const randomWho = getRandomElement(who);
+  const randomAction = getRandomElement(action);
+  const randomWhat = getRandomElement(what);
+  const randomWhen = getRandomElement(when);
+
+  return `${randomWho} ${randomAction} ${randomWhat} ${randomWhen}`;
+}
+
+function refreshExcuse() {
+  location.reload();
+}
+
+function getRandomElement(array) {
+  const randomIndex = Math.floor(Math.random() * array.length);
+  return array[randomIndex];
 }
